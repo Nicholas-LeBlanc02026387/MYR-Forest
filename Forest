@@ -1,0 +1,77 @@
+let counter = 0;
+let numGrass = 50;
+let numTrees = 100;
+
+while(counter < numTrees){
+//randomizes tree position
+    var x = Math.random() * 80 - 40;
+    var y = 0;
+    var z = Math.random() * 80 - 40;
+    
+//randomizes tree size
+    var s = (Math.random() * (0.4 - 0.2)) + 0.2;
+    
+//randomizes tree type
+    var t = Math.random();
+    
+//selects type of tree
+    if(t < 0.5){
+        setRandomColor();
+        setRotation(0, 0, 0);
+        setScale(s*6, s*6, s*6);
+        setPosition(x,4*s,z);
+        cone();
+        setPosition(x,8*s,z);
+        cone();
+    
+        setColor("rosybrown");
+        setScale(s, s*2, s);
+        setPosition(x, y, z);
+        cylinder();
+    }
+    else{
+        setRandomColor();
+        setScale(s*3, s*3, s*3);
+        setPosition(x,6*s,z);
+        setRotation(90, 0, 0);
+        torus();
+        setPosition(x,12*s,z);
+        torus();
+    
+        setColor("rosybrown");
+        setRotation(0, 0, 0);
+        setScale(s, s*8, s);
+        setPosition(x, y, z);
+        cylinder();  
+    }
+
+//makes grass blades
+    let counter2 = 0;
+    while(counter2 < numGrass){
+    //randomizes grass position
+        let xx = Math.random() * 80 - 40;
+        let yy = 0;
+        let zz = Math.random() * 80 - 40;
+        
+    //randomizes grass size
+        let ss = (Math.random() * (0.5 - 0.3)) + 0.3;
+
+    //varies grass color
+        let grassColor = new Array("lawngreen","green","greenyellow","lightgreen");
+        
+        setRandomColor(grassColor);
+        setScale(ss/4, ss, ss/2);
+        setPosition(xx, yy, zz);
+        plane();
+
+        counter2++;
+    }
+    counter++;
+}
+
+//makes green floor
+setRotation(90, 0, 0);
+setScale(80,80,80);
+setPosition(0,0,0);
+setColor("green");
+plane();
